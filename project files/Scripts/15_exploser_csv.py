@@ -5,7 +5,7 @@ import numpy as np
 import os
  
 np.random.seed(42)
-DATA_DIR = "./data"
+DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "DATA")
  
 CLIENTS_PAR_CANAL = {
     "GMS":           ["Carrefour","Auchan","Leclerc","Intermarché","Système U","Casino","Monoprix","Cora","Géant Casino"],
