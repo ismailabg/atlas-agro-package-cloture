@@ -7,7 +7,7 @@ Sortie : 3 fichiers CSV (Réel 2025, Budget 2026, Réel 2026 Jan-Mar).
 import csv, random, os
 random.seed(42)
 
-OUT = "./DATA"
+OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "DATA")
 os.makedirs(OUT, exist_ok=True)
 
 # ---------------- Référentiels ----------------
