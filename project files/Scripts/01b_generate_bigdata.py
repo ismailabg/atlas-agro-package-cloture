@@ -1,9 +1,4 @@
-"""
-ATLAS AGRO HOLDING — Générateur d'extractions ERP volumineuses (v2)
-Dimensions ajoutées : Site, Produit/SKU, Canal de vente, Quantité, Prix unitaire.
-Plan de comptes étendu (~36 comptes). Objectif : ~150 000 écritures.
-Sortie : 3 fichiers CSV (Réel 2025, Budget 2026, Réel 2026 Jan-Mar).
-"""
+
 import csv, random, os
 random.seed(42)
 
