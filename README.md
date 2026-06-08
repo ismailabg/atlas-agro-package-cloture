@@ -1,90 +1,62 @@
 # Atlas Agro Holding — Package de clôture automatisé
 
-## Fiche projet | Ismail Abgar
+Modèle de contrôle de gestion couvrant le cycle complet de clôture mensuel : extraction des données, agrégation, analyse des écarts, production du reporting et archivage.
+
+Entreprise fictive : groupe agroalimentaire, 210 M€ de CA, 5 Business Units, 850 collaborateurs.
 
 ---
 
-### Le projet en une phrase
+## Tester le modèle
 
-Un modèle complet de contrôle de gestion qui automatise le cycle de clôture mensuel : de l'extraction ERP (578 000 lignes) jusqu'au package PDF diffusable, en passant par un dashboard interactif, des commentaires de gestion générés par intelligence artificielle, et une industrialisation complète en VBA et Python.
+**Test rapide** — Téléchargez le fichier Excel directement :
+[Atlas_Agro_Command_Center.xlsm (Google Drive)](VOTRE_LIEN_GOOGLE_DRIVE)
 
----
+Ouvrez-le dans Excel, activez les macros. Explorez les onglets DASHBOARD, PACKAGE_PnL et SYNTHESE_BU. Le bouton « Pilotage clôture » génère le PDF.
 
-### Le contexte
-
-Atlas Agro Holding est un groupe agroalimentaire fictif (210 M€ de CA, 5 Business Units, 850 collaborateurs, 8 sites industriels). Le projet simule le travail d'un contrôleur de gestion rattaché à la Direction Financière, responsable du reporting mensuel de clôture.
-
----
-
-### Ce que le modèle fait
-
-**Données**
-- 3 extractions ERP (Réel 2026, Budget 2026, Réel 2025) totalisant 578 340 lignes
-- 19 colonnes analytiques : entité, site, produit, canal, client (42 clients), centre de coût (8 centres)
-- Granularité : BU × Site × Produit × Canal × Client / Centre de coût × Mois
-
-**Power Query (ETL)**
-- 7 requêtes interconnectées : 3 imports, 1 agrégation BU×Poste, 1 mensuelle, 1 Top Clients, 1 Charges par centre de coût
-- Paramètre centralisé : le mois de clôture est lu depuis une cellule ; un changement + actualisation rebascule tout le modèle
-- Volume/Prix/Mix : décomposition automatique des écarts de CA en 3 effets
-
-**Modèle Excel**
-- Dashboard "Command Center" : 3 KPI vedettes + jauge d'atterrissage, 5 KPI secondaires, 11 faits marquants auto-générés, 2 courbes de tendance mensuelle, KPI financiers, CA par BU, donut contribution, Top 10 Clients, charges par centre de coût, heatmap des écarts, repères groupe
-- Package P&L : compte de résultat consolidé, analyse verticale (% du CA), indicateurs de matérialité, bridge du résultat net, décomposition Volume/Prix/Mix
-- Synthèse BU : 9 blocs analytiques (performance YTD, mois, contribution, structure de coûts, commentaires de gestion, bridge EBITDA, matrice stratégique, heatmap, Top/Flop)
-
-**VBA (automatisation)**
-- Macro "Générer le package" : actualise les données, recalcule, horodate, exporte Dashboard + Package + Synthèse en PDF, archive avec nommage daté
-- Formulaire de pilotage : interface guidée en 5 étapes (mois, seuil, options, confirmation, exécution) — utilisable par un non-technicien
-- Import dynamique : sélecteur de dossier, détection des CSV attendus, comptage des lignes, copie et actualisation automatique
-
-**Python + API Claude (IA)**
-- Script qui lit les CSV, reproduit l'agrégation, détecte les écarts matériels, et génère des commentaires de gestion via l'API Claude
-- 3 sorties : rapport PDF, document Word éditable, injection dans le bloc commentaires de la synthèse Excel
-- Générateur de secours intégré (fonctionne sans clé API)
+**Test complet** — Clonez le repository, générez les données (578 000 lignes), importez-les dans le modèle :
+```
+pip install pandas numpy
+python scripts/01b_generate_bigdata.py
+python scripts/15_exploser_csv.py
+```
+Ouvrez le fichier Excel, utilisez le bouton « Importer les données » pour charger les CSV, puis « Pilotage clôture » pour générer le package.
 
 ---
 
-### Technologies utilisées
+## Contenu du projet
 
-| Domaine | Outils |
-|---|---|
-| Modélisation | Excel (formules avancées, graphiques, mise en forme conditionnelle) |
-| ETL | Power Query (code M, requêtes paramétrées, agrégations) |
-| Automatisation | VBA (macros, formulaire, import, gestion d'erreurs) |
-| Data / IA | Python (pandas, reportlab, python-docx, openpyxl, API Claude) |
-| Volume | 578 340 lignes, 42 clients, 8 centres de coûts, 29 SKU, 5 canaux |
+**Données** — 578 340 écritures comptables sur 3 exercices (Réel 2026, Budget 2026, Réel 2025). 19 colonnes : entité, site, produit, canal, client (42), centre de coût (8). Générées par script Python.
 
----
+**Power Query** — 7 requêtes interconnectées. Agrégation BU x Poste, Top Clients, Charges par centre de coût, décomposition mensuelle. Le mois de clôture est paramétré depuis une cellule unique ; l'actualisation rebascule tout le modèle.
 
-### Compétences démontrées
+**Modèle Excel** — Dashboard (KPI, tendances mensuelles, faits marquants auto-générés, heatmap, Top 10 Clients). Package P&L (compte de résultat, bridge du résultat net, analyse verticale, matérialité, décomposition Volume/Prix/Mix). Synthèse par BU (9 blocs analytiques dont matrice stratégique et bridge EBITDA).
 
-- Construction d'un modèle de reporting structuré (P&L, écarts, bridge, matérialité)
-- Maîtrise de Power Query pour l'agrégation de gros volumes
-- Décomposition Volume/Prix/Mix des écarts de CA
-- Automatisation VBA de bout en bout (industrialisation du processus)
-- Intégration d'une API LLM dans un workflow financier
-- Construction d'un dashboard analytique riche et lisible
+**VBA** — Génération du package en PDF (actualisation, recalcul, export, archivage daté). Formulaire de pilotage guidé (choix du mois, seuil, options). Import dynamique des CSV (détection, validation, copie, actualisation).
+
+**Python + API Claude** — Génération automatique des commentaires de gestion sur les écarts matériels. Sorties : PDF, Word, injection Excel. Fonctionne aussi sans clé API (générateur de secours par règles).
 
 ---
 
-### Comment l'utiliser
+## Structure
 
-1. Placer les 3 CSV dans le dossier `data/`
-2. Ouvrir le fichier `.xlsm`, activer les macros
-3. Cliquer sur "Pilotage clôture" : choisir le mois, le seuil, actualiser et exporter
-4. Le PDF est généré dans `Archives_Cloture/`
-5. (Optionnel) Lancer le script Python pour les commentaires IA
+```
+Archives_Cloture/    PDF générés par la macro (archivage daté)
+Commentaire/         Sorties du script Python (PDF, Word)
+DATA/                Échantillons CSV (1 000 lignes)
+Scripts/             Génération des données + commentaires IA
+import/              CSV d'import pour tester le module d'import dynamique
+vba/                 Modules VBA (.bas)
+```
 
 ---
 
-### À propos
+## Technologies
 
-**Ismail Abgar**
-Master 1 Financial & Risk Management — ISC Paris
-Expérience : stage en contrôle de gestion (MARJANE, Maroc)
-Recherche : alternance en contrôle de gestion
+Excel, Power Query (M), VBA, Python, pandas, reportlab, python-docx, API Claude (Anthropic)
 
-LinkedIn : [votre lien]
-Email : [votre email]
-GitHub : [votre lien]
+---
+
+## Auteur
+
+Ismail Abgar — M1 Financial & Risk Management, ISC Paris
+En recherche d'alternance en contrôle de gestion.
