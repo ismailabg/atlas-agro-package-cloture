@@ -1,15 +1,5 @@
 Attribute VB_Name = "modPackageCloture"
-'=====================================================================
-' MODULE  : modPackageCloture
-' PROJET  : Atlas Agro Holding - Automatisation du reporting de cloture
-' OBJET   : Genere le package de cloture mensuel en un clic.
-'           1) Actualise les donnees (Power Query / connexions)
-'           2) Recalcule le modele
-'           3) Horodate la cloture
-'           4) Exporte Dashboard + Package + Synthese en un PDF date
-'           5) Archive le PDF dans un sous-dossier dedie
-' AUTEUR  : Ismail Abgar
-'=====================================================================
+
 Option Explicit
 
 ' --- Parametres du module ---
