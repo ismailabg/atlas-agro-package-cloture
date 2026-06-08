@@ -10,8 +10,25 @@ Entreprise fictive : groupe agroalimentaire, 210 M€ de CA, 5 Business Units, 8
 
 **Test rapide** — Téléchargez le fichier Excel directement :
 [Atlas_Agro_Command_Center.xlsm (Google Drive)](https://drive.google.com/drive/folders/1YY35f1PCzimXf0EJDPoDzaiWjpn2y-pb?usp=sharing)
+## Tester le modèle
 
-Ouvrez-le dans Excel, activez les macros. Explorez les onglets DASHBOARD, PACKAGE_PnL et SYNTHESE_BU. Le bouton « Pilotage clôture » génère le PDF.
+**Activer les macros :**
+
+Si Excel affiche un bandeau jaune « Les macros ont été désactivées », cliquez sur Activer le contenu.
+
+Si Excel affiche un bandeau rouge « Microsoft a bloqué l'exécution des macros », le fichier est marqué comme provenant d'internet. Deux méthodes pour débloquer :
+
+Méthode 1 — Fermez Excel. Clic droit sur le fichier .xlsm dans l'Explorateur, Propriétés, cochez « Débloquer » en bas de l'onglet Général, Appliquer, OK. Rouvrez le fichier.
+
+Méthode 2 — Dans Excel, allez dans Fichier, Options, Centre de gestion de la confidentialité, Paramètres du Centre de gestion de la confidentialité, Emplacements approuvés, Ajouter un nouvel emplacement. Indiquez le dossier où se trouve le fichier téléchargé (par exemple C:\Users\VotreNom\Downloads), cochez « Les sous-dossiers sont également approuvés », OK. Fermez et rouvrez le fichier.
+
+**Explorer le modèle :**
+
+- DASHBOARD — Le Command Center avec les KPI, tendances, faits marquants, heatmap
+- PACKAGE_PnL — Le compte de résultat consolidé avec bridge et décomposition Volume/Prix/Mix
+- SYNTHESE_BU — L'analyse par Business Unit (9 blocs analytiques)
+
+Le bouton « Pilotage clôture » génère le PDF du package complet.
 
 **Test complet** — Clonez le repository, générez les données (578 000 lignes), importez-les dans le modèle :
 ```
