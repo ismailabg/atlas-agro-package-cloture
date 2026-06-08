@@ -8,50 +8,41 @@ Entreprise fictive : groupe agroalimentaire, 210 M€ de CA, 5 Business Units, 8
 
 ## Tester le modèle
 
-**Test rapide** — Téléchargez le fichier Excel directement :
-[Atlas_Agro_Command_Center.xlsm (Google Drive)](https://drive.google.com/drive/folders/1YY35f1PCzimXf0EJDPoDzaiWjpn2y-pb?usp=sharing)
-## Tester le modèle
+### Test rapide
 
-**Activer les macros :**
+1. Téléchargez le fichier Excel : [Atlas_Agro_Command_Center.xlsm (Google Drive)](https://drive.google.com/drive/folders/1YY35f1PCzimXf0EJDPoDzaiWjpn2y-pb?usp=sharing)
+2. Si les macros sont bloquées : fermez le fichier, clic droit, Propriétés, cochez Débloquer, Appliquer, rouvrez.
+3. Explorez les onglets DASHBOARD, PACKAGE_PnL et SYNTHESE_BU.
+4. Cliquez sur le bouton Pilotage clôture pour générer le PDF.
 
-Si Excel affiche un bandeau jaune « Les macros ont été désactivées », cliquez sur Activer le contenu.
+### Test complet
 
-Si Excel affiche un bandeau rouge « Microsoft a bloqué l'exécution des macros », le fichier est marqué comme provenant d'internet. Deux méthodes pour débloquer :
-
-Méthode 1 — Fermez Excel. Clic droit sur le fichier .xlsm dans l'Explorateur, Propriétés, cochez « Débloquer » en bas de l'onglet Général, Appliquer, OK. Rouvrez le fichier.
-
-Méthode 2 — Dans Excel, allez dans Fichier, Options, Centre de gestion de la confidentialité, Paramètres du Centre de gestion de la confidentialité, Emplacements approuvés, Ajouter un nouvel emplacement. Indiquez le dossier où se trouve le fichier téléchargé (par exemple C:\Users\VotreNom\Downloads), cochez « Les sous-dossiers sont également approuvés », OK. Fermez et rouvrez le fichier.
-
-**Explorer le modèle :**
-
-- DASHBOARD — Le Command Center avec les KPI, tendances, faits marquants, heatmap
-- PACKAGE_PnL — Le compte de résultat consolidé avec bridge et décomposition Volume/Prix/Mix
-- SYNTHESE_BU — L'analyse par Business Unit (9 blocs analytiques)
-
-Le bouton « Pilotage clôture » génère le PDF du package complet.
-
-Test complet
 Prérequis : Excel (Microsoft 365 / 2019+), Python 3.10+
 
-Téléchargez et décompressez ce repository.
-Téléchargez le fichier Excel depuis Google Drive et placez-le dans le dossier du projet.
-Générez les données (578 000 lignes) :
-
+1. Téléchargez et décompressez ce repository.
+2. Téléchargez le fichier Excel depuis le lien ci-dessus et placez-le dans le dossier du projet.
+3. Générez les données (578 000 lignes) :
+   ```
    pip install pandas numpy
    python Scripts/01b_generate_bigdata.py
    python Scripts/15_exploser_csv.py
-
-Ouvrez le .xlsm. Si les macros sont bloquées : fermez, clic droit sur le fichier, Propriétés, cochez Débloquer, rouvrez.
-Fichier, Options, Options de requête, Confidentialité, Ignorer les niveaux de confidentialité, OK.
-Données, Actualiser tout (Ctrl+Alt+F5). Attendez 10-30 secondes.
-Cliquez sur Pilotage clôture : mois 3, seuil 50, Actualiser Oui, Exporter PDF Oui.
+   ```
+4. Ouvrez le .xlsm et activez les macros (Débloquer si nécessaire).
+5. Fichier, Options, Options de requête, Confidentialité, Ignorer les niveaux de confidentialité, OK.
+6. Données, Actualiser tout (Ctrl+Alt+F5). Attendez 10-30 secondes.
+7. Cliquez sur Pilotage clôture : mois 3, seuil 50, Actualiser Oui, Exporter PDF Oui.
 
 Le PDF du package est dans Archives_Cloture/.
 
-Les 3 boutons
-Pilotage clôture — Choix du mois et du seuil, actualisation, génération du PDF. Le bouton principal.
-Importer les données — Intègre de nouveaux CSV reçus d'une source externe (ERP). Détecte les fichiers, affiche le nombre de lignes, actualise.
-Générer le package — Export PDF direct (Dashboard + Package + Synthèse) sans passer par le formulaire.
+---
+
+## Les 3 boutons
+
+**Pilotage clôture** — Choix du mois et du seuil, actualisation, génération du PDF. Le bouton principal.
+
+**Importer les données** — Intègre de nouveaux CSV reçus d'une source externe (ERP). Détecte les fichiers, affiche le nombre de lignes, actualise.
+
+**Générer le package** — Export PDF direct (Dashboard + Package + Synthèse) sans passer par le formulaire.
 
 ---
 
@@ -88,7 +79,9 @@ Excel, Power Query (M), VBA, Python, pandas, reportlab, python-docx, API Claude 
 
 ---
 
-## Auteur
+## Contact
 
 Ismail Abgar — M1 Financial & Risk Management, ISC Paris
 En recherche d'alternance en contrôle de gestion.
+
+ismail.abgar@edu.iscparis.com
