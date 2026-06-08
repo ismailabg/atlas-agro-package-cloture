@@ -9,7 +9,7 @@ Entreprise fictive : groupe agroalimentaire, 210 M€ de CA, 5 Business Units, 8
 ## Tester le modèle
 
 **Test rapide** — Téléchargez le fichier Excel directement :
-[Atlas_Agro_Command_Center.xlsm (Google Drive)](VOTRE_LIEN_GOOGLE_DRIVE)
+[Atlas_Agro_Command_Center.xlsm (Google Drive)](https://drive.google.com/drive/folders/1YY35f1PCzimXf0EJDPoDzaiWjpn2y-pb?usp=sharing)
 
 Ouvrez-le dans Excel, activez les macros. Explorez les onglets DASHBOARD, PACKAGE_PnL et SYNTHESE_BU. Le bouton « Pilotage clôture » génère le PDF.
 
