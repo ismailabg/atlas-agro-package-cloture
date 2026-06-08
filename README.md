@@ -30,13 +30,28 @@ Méthode 2 — Dans Excel, allez dans Fichier, Options, Centre de gestion de la 
 
 Le bouton « Pilotage clôture » génère le PDF du package complet.
 
-**Test complet** — Clonez le repository, générez les données (578 000 lignes), importez-les dans le modèle :
-```
-pip install pandas numpy
-python scripts/01b_generate_bigdata.py
-python scripts/15_exploser_csv.py
-```
-Ouvrez le fichier Excel, utilisez le bouton « Importer les données » pour charger les CSV, puis « Pilotage clôture » pour générer le package.
+Test complet
+Prérequis : Excel (Microsoft 365 / 2019+), Python 3.10+
+
+Téléchargez et décompressez ce repository.
+Téléchargez le fichier Excel depuis Google Drive et placez-le dans le dossier du projet.
+Générez les données (578 000 lignes) :
+
+   pip install pandas numpy
+   python Scripts/01b_generate_bigdata.py
+   python Scripts/15_exploser_csv.py
+
+Ouvrez le .xlsm. Si les macros sont bloquées : fermez, clic droit sur le fichier, Propriétés, cochez Débloquer, rouvrez.
+Fichier, Options, Options de requête, Confidentialité, Ignorer les niveaux de confidentialité, OK.
+Données, Actualiser tout (Ctrl+Alt+F5). Attendez 10-30 secondes.
+Cliquez sur Pilotage clôture : mois 3, seuil 50, Actualiser Oui, Exporter PDF Oui.
+
+Le PDF du package est dans Archives_Cloture/.
+
+Les 3 boutons
+Pilotage clôture — Choix du mois et du seuil, actualisation, génération du PDF. Le bouton principal.
+Importer les données — Intègre de nouveaux CSV reçus d'une source externe (ERP). Détecte les fichiers, affiche le nombre de lignes, actualise.
+Générer le package — Export PDF direct (Dashboard + Package + Synthèse) sans passer par le formulaire.
 
 ---
 
