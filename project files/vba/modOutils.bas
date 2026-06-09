@@ -1,11 +1,5 @@
 Attribute VB_Name = "modOutils"
-'=====================================================================
-' MODULE  : modOutils
-' PROJET  : Atlas Agro Holding - Outils avances de controle de gestion
-' OBJET   : (1) Formulaire de pilotage de la cloture
-'           (2) Import dynamique des fichiers CSV
-' AUTEUR  : Ismail Abgar
-'=====================================================================
+
 Option Explicit
 
 ' --- Noms des fichiers CSV attendus ---
@@ -13,11 +7,7 @@ Private Const CSV_REEL_26  As String = "GL_Reel_2026.csv"
 Private Const CSV_BUDGET   As String = "GL_Budget_2026.csv"
 Private Const CSV_REEL_25  As String = "GL_Reel_2025.csv"
 
-'=====================================================================
-' 1. FORMULAIRE DE PILOTAGE DE LA CLOTURE
-'    Affiche un ecran interactif : choix du mois, seuil, options,
-'    puis lance la generation du package.
-'=====================================================================
+
 Public Sub AfficherPilotage()
 
     Dim moisNoms As Variant
@@ -137,9 +127,8 @@ End Sub
 
 '=====================================================================
 ' 2. IMPORT DYNAMIQUE DES FICHIERS CSV
-'    Ouvre un selecteur de dossier, detecte les CSV attendus,
-'    les copie dans le repertoire de travail, et actualise.
-'=====================================================================
+
+
 Public Sub ImporterDonnees()
 
     Dim dossierSource As String
@@ -253,7 +242,7 @@ End Sub
 
 '=====================================================================
 ' UTILITAIRE : Compte les lignes d'un fichier CSV
-'=====================================================================
+
 Private Function CompterLignesCSV(chemin As String) As Long
     Dim f As Integer
     Dim ligne As String
